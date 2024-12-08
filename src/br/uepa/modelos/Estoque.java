@@ -1,37 +1,22 @@
 package br.uepa.modelos;
 
 public class Estoque {
+    private int qtdProdutos;
 
-    private String nomeEstoque;
-    private String descricaoEstoque;
-    private double pesoEstoque;
-    private Produto produtoEstoque;
-
-    public void setNome(String nome) {
-        this.nomeEstoque = nomeEstoque;
+    public void preencherEstoque(int qtdProdutos){
+        System.out.println(String.format("Adicionando %d produtos no estoque", qtdProdutos));
+        this.qtdProdutos += qtdProdutos;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricaoEstoque = descricaoEstoque;
+    public int getQtdProdutosEstoque() {
+        return this.qtdProdutos;
     }
 
-    public void setPesoEstoque(double pesoEstoque) {
-        this.pesoEstoque = pesoEstoque;
+    public void saidaProduto(int qtdProdutos) {
+        this.qtdProdutos -= qtdProdutos;
     }
 
-    public String getNome() {
-        return nomeEstoque;
-    }
-
-    public String getDescricao() {
-        return descricaoEstoque;
-    }
-
-    public double getPesoEstoque() {
-        return pesoEstoque;
-    }
-
-    public void preencherEstoque(){
-        System.out.println("Preenchendo estoque...");
+    public void entradaProduto(int qtdProdutos) {
+        this.qtdProdutos += qtdProdutos;
     }
 }

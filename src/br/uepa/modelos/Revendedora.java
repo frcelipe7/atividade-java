@@ -1,26 +1,27 @@
 package br.uepa.modelos;
 
-public class Revendedora {
+public class Revendedora extends Empresa {
+    private Estoque estoque;
 
-    private Endereco enderecoRevendedora;
-    private Estoque estoqueRevendedora;
-
-
-    public Revendedora(Endereco enderecoRevendedora, Estoque estoqueRevendedora) {
-        this.enderecoRevendedora = enderecoRevendedora;
-        this.estoqueRevendedora = estoqueRevendedora;
+    public Revendedora(String nomeEmpresa, String cnpjEmpresa, String nomeGerente) {
+        super(nomeEmpresa, cnpjEmpresa, nomeGerente);
+        this.estoque = new Estoque();
     }
 
-    public Endereco getEnderecoRevendedora() {
-        return enderecoRevendedora;
+    public void realizarVenda(int qtdProdutosVenda){
+        if (this.estoque.getQtdProdutosEstoque() < qtdProdutosVenda) {
+            System.out.println("Quantidade no estoque é insuficiente");
+        } else {
+            this.estoque.saidaProduto(qtdProdutosVenda);
+            System.out.println("Venda realizada com sucesso");
+        }
     }
 
-    public void setEnderecoRevendedora(Endereco endereco) {
-        this.enderecoRevendedora = endereco;
+    public void abastecerEstoque(int qtdProdutosAbastecimento) {
+        this.estoque.entradaProduto(qtdProdutosAbastecimento);
     }
 
-    public void realizarVenda(){
-        System.out.println("realizando venda...");
+    public int getEstoque() {
+        return this.estoque.getQtdProdutosEstoque();
     }
-
 }
