@@ -1,22 +1,30 @@
 package br.uepa.modelos;
 
 public class Predio {
-    protected Endereco endereco;
-    private String nomeGerente;
+    private String gerentePredio;
+    private Endereco enderecoPredio;
 
-    public Predio(String nomeGerente) {
-        this.nomeGerente = nomeGerente;
+    // construtor
+    Predio(String gerentePredio, String cep, String estado, String cidade, String bairro, String rua, int numero) {
+        this.gerentePredio = gerentePredio;
     }
 
-    public void setEndereco(String cep, String estado, String cidade, String bairro, String rua, int numero) {
-        this.endereco = new Endereco(cep, estado, cidade, bairro, rua, numero);
+    // setters
+    public void setGerentePredio(String gerentePredio) {
+        this.gerentePredio = gerentePredio;
     }
 
-    public void setNomeGerente(String nomeGerente) {
-        this.nomeGerente = nomeGerente;
+    // getters
+    public String getGerentePredio() {
+        return gerentePredio;
     }
 
-    public String getNomeGerente() {
-        return nomeGerente;
+    // demais métodos
+    public void setEnderecoPredio(Endereco enderecoPredio) {
+        this.enderecoPredio = enderecoPredio;
+    }
+
+    public Endereco getEnderecoPredio() {
+        return enderecoPredio;
     }
 }

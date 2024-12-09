@@ -3,23 +3,46 @@ package br.uepa.modelos;
 public class Empresa {
     private String nomeEmpresa;
     private String cnpjEmpresa;
-    private Predio predio;
+    private Predio predioEmpresa;
 
-    public Empresa(String nomeEmpresa, String cnpjEmpresa, String nomeGerente) {
+    // construtor
+    Empresa(String nomeEmpresa, String cnpjEmpresa, String gerentePredio, String cep, String estado, String cidade, String bairro, String rua, int numero) {
         this.nomeEmpresa = nomeEmpresa;
         this.cnpjEmpresa = cnpjEmpresa;
-        this.predio = new Predio(nomeGerente);
+        this.predioEmpresa = new Predio(gerentePredio, cep, estado, cidade, bairro, rua, numero);
     }
 
-    public void setEndereco(String cep, String estado, String cidade, String bairro, String rua, int numero) {
-        this.predio.setEndereco(cep, estado, cidade, bairro, rua, numero);
+    // setters
+    public void setNomeEmpresa(String nomeEmpresa) {
+        this.nomeEmpresa = nomeEmpresa;
     }
 
-    public String getEstado() {
-        return this.predio.endereco.getEstado();
+    public void setCnpjEmpresa(String cnpjEmpresa) {
+        this.cnpjEmpresa = cnpjEmpresa;
     }
 
-    public void verificar() {
-        System.out.println(String.format("Nome: %s, cnpj: %s, nome gerente: %s", this.nomeEmpresa, this.cnpjEmpresa, this.predio.getNomeGerente()));
+    public void setPredioEmpresa(Predio predioEmpresa) {
+        this.predioEmpresa = predioEmpresa;
+    }
+
+    // getters
+    public String getNomeEmpresa() {
+        return nomeEmpresa;
+    }
+
+    public String getCnpjEmpresa() {
+        return cnpjEmpresa;
+    }
+
+    public Predio getPredioEmpresa() {
+        return predioEmpresa;
+    }
+
+    // demais métodos
+    public void exibirDetalhesEmpresa() {
+        System.out.println("Detalhes da Empresa");
+        System.out.println("Nome: " + nomeEmpresa);
+        System.out.println("CNPJ: " + cnpjEmpresa);
+        System.out.println("Gerente: " + predioEmpresa.getGerentePredio());
     }
 }
