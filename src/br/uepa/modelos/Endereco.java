@@ -52,18 +52,18 @@ public class Endereco {
     }
 
     public String getCidade() {
-        return cidade;
+        return this.cidade;
     }
 
     public String getBairro() {
-        return bairro;
+        return this.bairro;
     }
 
     public String getRua() {
-        return rua;
+        return this.rua;
     }
 
     public int getNumero() {
-        return numero;
+        return this.numero;
     }
 }
