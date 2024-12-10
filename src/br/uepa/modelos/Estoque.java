@@ -15,8 +15,4 @@ public class Estoque {
     public void saidaProduto(int qtdProdutos) {
         this.qtdProdutos -= qtdProdutos;
     }
-
-    public void entradaProduto(int qtdProdutos) {
-        this.qtdProdutos += qtdProdutos;
-    }
 }
