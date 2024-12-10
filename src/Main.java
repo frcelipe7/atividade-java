@@ -1,29 +1,152 @@
 import br.uepa.modelos.Empresa;
+import br.uepa.modelos.Fabrica;
 import br.uepa.modelos.Revendedora;
 
+import java.time.format.SignStyle;
+import java.util.Scanner;
+
 public class Main {
-    public static void main(String[] args) {
-        // criando uma empresa e um predio de revenda da empresa
-        Revendedora minhaRevendedora = new Revendedora("Silvio Santos");
-        Empresa minhaEmpresa = new Empresa("SBT", "1234", minhaRevendedora);
+    public static void main(String[] args) throws InterruptedException {
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_RED = "\u001B[31m";
+        final String ANSI_GREEN = "\u001B[32m";
+        final String ANSI_BLUE = "\u001B[34m";
 
-        minhaRevendedora.setEndereco("1234-12", "Para", "Parauapebas", "da Paz", "do Arame", 203);
+        System.out.println("\n===============================================");
+        System.out.println("================= Empresas.com =================");
+        System.out.println("================================================");
+        System.out.println("v1.4.53\n");
 
-        System.out.println("Nome gerente: " + minhaRevendedora.getNomeGerente());
-        System.out.println("Nome empresa: " + minhaRevendedora.getEmpresa().getNomeEmpresa());
-        System.out.println(minhaRevendedora.getQtdProdutosEstoque());
+        for (int i = 0; i < 50; i++) {
+            Thread.sleep(50);
+            System.out.print("█");
+        }
 
-        // adicionando produtos no estoque
-        minhaRevendedora.abastecerEstoque(100);
-        System.out.println(minhaRevendedora.getQtdProdutosEstoque());
+        System.out.print(ANSI_GREEN+"\r100%"+ANSI_RESET);
+        Thread.sleep(1000);
+        System.out.print(ANSI_GREEN+"\rBem-vindo(a) ao melhor sistema empresarial do mundo!\n\n"+ANSI_RESET);
 
-        // venda realizada com sucesso
-        minhaRevendedora.saidaEstoque(80);
-        System.out.println(minhaRevendedora.getQtdProdutosEstoque());
+        Thread.sleep(2000);
 
-        // quantidade no estoque é insuficiente
-        minhaRevendedora.saidaEstoque(80);
-        System.out.println(minhaRevendedora.getQtdProdutosEstoque());
+        int op = 0;
+        Scanner userOp = new Scanner(System.in);
+        Scanner userInput = new Scanner(System.in);
+        System.out.println("O que voce deseja fazer?\n [1] - Criar loja;\n [2] - Criar fabrica;");
+
+        while (op != 3) {
+            op = userOp.nextInt();
+
+
+            Empresa minhaEmpresa;
+            Revendedora minhaRevendedora;
+            Fabrica minhaFabrica;
+
+
+            System.out.println("Insira o nome da empresa: ");
+            String nomeEmpresa = userInput.nextLine();
+
+            System.out.println("Insira o cnpj da empresa: ");
+            String cnpjEmpresa = userInput.nextLine();
+
+            switch (op) {
+                case 1:
+                    /// loja/revendendora
+
+                    // criando uma empresa e um predio de revenda da empresa
+                    minhaRevendedora = new Revendedora("Default");
+                    minhaEmpresa = new Empresa("Default", "Default", minhaRevendedora);
+
+                    minhaEmpresa.setNomeEmpresa(nomeEmpresa);
+                    minhaEmpresa.setCnpjEmpresa(cnpjEmpresa);
+
+                    // endereco padrao pra economizar tempo
+                    minhaRevendedora.setEndereco("1234-12", "Para", "Parauapebas", "da Paz", "do Arame", 203);
+
+                    System.out.println("Insira o nome do gerente da loja: ");
+                    String nomeGerente = userInput.nextLine();
+                    minhaRevendedora.setNomeGerente(nomeGerente);
+
+                    System.out.println("Nome gerente: " + minhaRevendedora.getNomeGerente());
+                    System.out.println("Nome empresa: " + minhaRevendedora.getEmpresa().getNomeEmpresa());
+
+                    System.out.println(ANSI_BLUE + "Produtos no estoque da loja: " + ANSI_RESET + minhaRevendedora.getQtdProdutosEstoque());
+
+                    // adicionando produtos no estoque
+                    minhaRevendedora.abastecerEstoque(100);
+                    System.out.println("\nAbastecendo estoque ==============");
+                    System.out.println("Adicionando 100 produtos no estoque");
+                    System.out.println(ANSI_BLUE + "Produtos no estoque da loja: " + ANSI_RESET + minhaRevendedora.getQtdProdutosEstoque());
+
+                    // venda realizada com sucesso
+                    minhaRevendedora.saidaEstoque(80);
+                    System.out.println("\nRealizando venda ==============");
+                    System.out.println("Venda de 80 produtos");
+                    System.out.println(ANSI_BLUE + "Produtos no estoque da loja: " + ANSI_RESET + minhaRevendedora.getQtdProdutosEstoque());
+
+                    // quantidade no estoque é insuficiente
+                    minhaRevendedora.saidaEstoque(80);
+                    System.out.println("\nRealizando venda ==============");
+                    System.out.println("Venda de 80 produtos");
+                    System.out.println(ANSI_BLUE + "Produtos no estoque da loja: " + ANSI_RESET + minhaRevendedora.getQtdProdutosEstoque());
+
+                    break;
+                case 2:
+                    /// fabrica
+
+                    // criando uma empresa e um predio de revenda da empresa
+                    minhaFabrica = new Fabrica("Default");
+                    minhaEmpresa = new Empresa("Default", "Default", minhaFabrica);
+
+                    minhaEmpresa.setNomeEmpresa(nomeEmpresa);
+                    minhaEmpresa.setCnpjEmpresa(cnpjEmpresa);
+
+                    // endereco padrao pra economizar tempo
+                    minhaFabrica.setEndereco("1234-12", "Para", "Parauapebas", "da Paz", "do Arame", 203);
+
+                    System.out.println("\nInsira o nome do gerente da fabrica: ");
+                    String nomeGerenteFabrica = userInput.nextLine();
+                    minhaFabrica.setNomeGerente(nomeGerenteFabrica);
+
+                    System.out.println(ANSI_BLUE + "Nome gerente: " + ANSI_RESET + minhaFabrica.getNomeGerente());
+                    System.out.println(ANSI_BLUE + "Nome empresa: " + ANSI_RESET + minhaFabrica.getEmpresa().getNomeEmpresa());
+
+                    System.out.println(ANSI_BLUE + "Produtos no estoque da loja: " + ANSI_RESET + minhaFabrica.getQtdProdutosEstoque());
+
+                    // fabricando e estocando produtos
+                    minhaFabrica.fabricarProdutos(100);
+                    System.out.println("\nFabricando produtos ==============");
+                    System.out.println("Fabricando 100 produtos");
+                    System.out.println(ANSI_BLUE + "Produtos fabricados e estocados: " + ANSI_RESET + minhaFabrica.getQtdProdutosEstoque());
+
+                    // enviando produtos para a revendedora
+                    minhaFabrica.saidaEstoque(80);
+                    System.out.println("\nRealizando venda ==============");
+                    System.out.println("Realizando venda de 80 produtos");
+                    System.out.println(ANSI_BLUE + "Produtos no estoque da loja: " + ANSI_RESET + minhaFabrica.getQtdProdutosEstoque());
+
+                    // quantidade no estoque é insuficiente
+                    minhaFabrica.saidaEstoque(80);
+                    System.out.println("\nRealizando venda ==============");
+                    System.out.println("Realizando venda de 80 produtos");
+                    System.out.println(ANSI_BLUE + "Produtos no estoque da loja: " + ANSI_RESET + minhaFabrica.getQtdProdutosEstoque());
+                    break;
+                case 3:
+                    System.out.println(ANSI_RED+"Encerrando sistema :("+ANSI_RESET);
+                    break;
+            }
+            System.out.println("O que voce deseja fazer?\n [1] - Criar loja;\n [2] - Criar fabrica;\n [3] - Sair;");
+            op = userOp.nextInt();
+        }
+
+
+        System.out.println(ANSI_GREEN+"\n\nGrandioso desenvolvedores do melhor sistema para empresas Empresas.com:"+ANSI_RESET);
+
+        System.out.println(ANSI_RED+"Felipe Raphael Coelho dos Santos");
+        System.out.println("Vinícius Mendes da Silva Correa");
+        System.out.println("Rosival Soares Peres Junior");
+        System.out.println("Jainer Silva Leite"+ANSI_RESET);
+        System.out.println("===========================");
+
 
     }
 }
