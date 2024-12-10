@@ -3,13 +3,21 @@ package br.uepa.modelos;
 public class Predio {
     protected Endereco endereco;
     private String nomeGerente;
+    protected Estoque estoque;
     private Empresa empresa;
-    private Estoque estoque;
 
-    public Predio(String nomeGerente, Empresa empresa) {
+    public Predio(String nomeGerente) {
         this.nomeGerente = nomeGerente;
-        this.empresa = empresa;
+        //this.empresa = empresa;
         this.estoque = new Estoque();
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+    public Empresa getEmpresa() {
+        return this.empresa;
     }
 
     public void setEndereco(String cep, String estado, String cidade, String bairro, String rua, int numero) {
@@ -34,12 +42,12 @@ public class Predio {
         this.estoque.entradaProduto(qtd);
     }
 
-    public void saidaEstoque(int qtdSaida, String sucessoMessage, String erroMessage){
+    public void saidaEstoque(int qtdSaida){
         if (this.estoque.getQtdProdutosEstoque() < qtdSaida) {
-            System.out.println(erroMessage);
+            System.out.println("Default");
         } else {
             this.estoque.saidaProduto(qtdSaida);
-            System.out.println(sucessoMessage);
+            System.out.println("Default");
         }
     }
 }

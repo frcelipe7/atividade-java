@@ -2,19 +2,21 @@ package br.uepa.modelos;
 
 public class Revendedora extends Predio {
 
-    public Revendedora(String nomeGerente, Empresa empresa) {
-        super(nomeGerente, empresa);
+    public Revendedora(String nomeGerente) {
+        super(nomeGerente);
     }
 
     public void abastecerEstoque(int qtdProdutosAbastecimento) {
         this.entradaEstoque(qtdProdutosAbastecimento);
     }
 
-    public void venderProduto(int qtdProdutosVenda){
-        this.saidaEstoque(qtdProdutosVenda, "Quantidade no estoque é insuficiente", "Venda realizada com sucesso");
-    }
-
-    public void realizarVenda(int qtdProdutos) {
-
+    @Override
+    public void saidaEstoque(int qtdSaida) {
+        if (this.getQtdProdutosEstoque() < qtdSaida) {
+            System.out.println("Quantidade no estoque é insuficiente.");
+        } else {
+            this.estoque.saidaProduto(qtdSaida);
+            System.out.println("Venda realizada com sucesso!");
+        }
     }
 }

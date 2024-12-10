@@ -1,15 +1,21 @@
 package br.uepa.modelos;
 
 public class Fabrica extends Predio {
-    public Fabrica(String nomeGerente, Empresa empresa) {
-        super(nomeGerente, empresa);
+    public Fabrica(String nomeGerente) {
+        super(nomeGerente);
     }
 
     public void fabricarProdutos(int qtdProdutos) {
         this.entradaEstoque(qtdProdutos);
     }
 
-    public void saidaProdutos(int qtdProdutos) {
-        this.saidaEstoque(qtdProdutos, "Quantidade no estoque é insuficiente", "Venda realizada com sucesso");
+    @Override
+    public void saidaEstoque(int qtdSaida) {
+        if (this.getQtdProdutosEstoque() < qtdSaida) {
+            System.out.println("Quantidade no estoque é insuficiente. Iniciando fabricacao.");
+        } else {
+            this.estoque.saidaProduto(qtdSaida);
+            System.out.println("Registrando saida. Enviando produtos para a revendedora!");
+        }
     }
 }
